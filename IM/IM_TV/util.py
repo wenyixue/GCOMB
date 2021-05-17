@@ -200,7 +200,7 @@ def getNode(probOfRandomSelection, graphid, stateIdx):
 
 
 
-def calculate_spread_mc_sim(graph_dir,seed_nodes,model,attributes, attr_value_id, group_size,l):
+def calculate_spread_mc_sim_fair(graph_dir,seed_nodes,model,attributes, attr_value_id, group_size,l):
 
 	if len(seed_nodes)==0:
 		return 0
@@ -214,7 +214,7 @@ def calculate_spread_mc_sim(graph_dir,seed_nodes,model,attributes, attr_value_id
 			if len(seed_nodes) == 0:
 				return 0
 			else:
-				spread=evaluate_spread.evaluate_helper_without_mp(mc_path, None, seed_nodes, num_mc_sim,attributes, attr_value_id, group_size,l)
+				spread=evaluate_spread.evaluate_helper_without_mp_fair(mc_path, None, seed_nodes, num_mc_sim,attributes, attr_value_id, group_size,l)
 				return spread
 
 		else:
@@ -256,7 +256,7 @@ def getShortReward(nodeSelected, graphid, previous_spread,attributes, attr_value
 	# return additionCount
 	if(len(graphEnv.graphEnvironment[graphid].state)==0):
 		print(" first step ")
-		shortReward = calculate_spread_mc_sim(graphEnv.graphEnvironment[graphid].graph_dir, [nodeSelected],"TV")
+		shortReward = calculate_spread_mc_sim_fair(graphEnv.graphEnvironment[graphid].graph_dir, [nodeSelected],"TV",attributes, attr_value_id, group_size,l)
 		print(" short reward ", shortReward)
 		return shortReward, shortReward
 
@@ -273,7 +273,7 @@ def getShortReward(nodeSelected, graphid, previous_spread,attributes, attr_value
 	#initial_spread = calculate_spread_mc_sim(graphEnv.graphEnvironment[graphid].graph_dir, seed_nodes_earlier,"TV")
 #	print("before ",initial_spread, seed_nodes_earlier, new_node_to_be_added)
 
-	final_spread  = calculate_spread_mc_sim(graphEnv.graphEnvironment[graphid].graph_dir, seed_nodes_later,"TV",attributes, attr_value_id, group_size,l)
+	final_spread  = calculate_spread_mc_sim_fair(graphEnv.graphEnvironment[graphid].graph_dir, seed_nodes_later,"TV",attributes, attr_value_id, group_size,l)
 
 	#initial_spread = calculate_spread(graphEnv.graphE nvironment[graphid].graphX, seed_nodes_earlier,
 	#								  new_node_to_be_added)
