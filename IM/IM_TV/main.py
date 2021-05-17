@@ -122,7 +122,7 @@ for episode in range(0,numEps):
             graphEnv.graphEnvironment[episode].embedding_time[step+1][true_node_id][0] = value
         print("seleected", graph.state)
         # returns the short term reward and updates the isCounted
-        shortReward, previous_spread = util.getShortReward(action_t, episode,previous_spread)#= new_neighbors_length
+        shortReward, previous_spread = util.getShortReward(action_t, episode,previous_spread,graph.attributes,graph.attr_value_id, graph.group_size,0.1)#= new_neighbors_length
     #	previous_spread= shortReward
         print("Short reward for addition of ", action_t, "is ", shortReward)
         print(" new previous spread, ", previous_spread)
