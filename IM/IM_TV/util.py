@@ -136,9 +136,24 @@ class Graph:
 		self.embedding_time = {}
 		for i in range(0, num_k+1):
 			self.embedding_time[i] = copy.deepcopy(self.embedding)
-
-
-
+			
+		self.gr_values= {}
+		self.group_size= {}
+		self.attributes = ['region', 'ethnicity', 'age', 'gender', 'status']
+		self.attr_value_id=[{},{},{},{},{}]
+		for attribute in self.attributes:
+    			# assign a unique numeric value for nodes who left the attribute blank
+    			nvalues = len(np.unique([self.graphX.node[v][attribute] for v in self.graphX.nodes()]))  # 这个attribute一共有几种值
+    			self.gr_values[attribute] = np.zeros(nvalues)
+    			self.group_size[attribute] = np.zeros(nvalues)
+		for attr_idx, attribute in enumerate(self.attributes): #遍历每一种attribute
+    			#all values taken by this attribute
+    			values = np.unique([self.graphX.node[v][attribute] for v in self.graphX.nodes()])                   
+    			nodes_attr = {}
+    			for vidx, val in enumerate(values):
+        			self.attr_value_id[attr_idx][val]=vidx  #对于每个attribute,每个值map到一个id上
+        			nodes_attr[val] = [v for v in self.graphX.nodes() if self.graphX.node[v][attribute] == val] #每一种取值有哪些node
+        			self.group_size[attribute][vidx] = len(nodes_attr[val])  #每一种取值的group大小
 
 
 def init(learningRate, numOfEpochs, batchSize, dimension):
