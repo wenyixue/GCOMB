@@ -200,7 +200,7 @@ def getNode(probOfRandomSelection, graphid, stateIdx):
 
 
 
-def calculate_spread_mc_sim(graph_dir,seed_nodes,model):
+def calculate_spread_mc_sim(graph_dir,seed_nodes,model,attributes, attr_value_id, group_size,l):
 
 	if len(seed_nodes)==0:
 		return 0
@@ -214,7 +214,7 @@ def calculate_spread_mc_sim(graph_dir,seed_nodes,model):
 			if len(seed_nodes) == 0:
 				return 0
 			else:
-				spread=evaluate_spread.evaluate_helper_without_mp(mc_path, None, seed_nodes, num_mc_sim)
+				spread=evaluate_spread.evaluate_helper_without_mp(mc_path, None, seed_nodes, num_mc_sim,attributes, attr_value_id, group_size,l)
 				return spread
 
 		else:
@@ -243,7 +243,7 @@ def calculate_spread_mc_sim(graph_dir,seed_nodes,model):
 
 # net addition to the influence
 # influence: Number
-def getShortReward(nodeSelected, graphid, previous_spread):
+def getShortReward(nodeSelected, graphid, previous_spread,attributes, attr_value_id, group_size,l):
 	# additionCount = 0
 	# list_of_neighbors = graphEnv.graphEnvironment[graphid].graphX.neighbors(nodeSelected)
 	# print(" neighors ", list_of_neighbors)
@@ -273,7 +273,7 @@ def getShortReward(nodeSelected, graphid, previous_spread):
 	#initial_spread = calculate_spread_mc_sim(graphEnv.graphEnvironment[graphid].graph_dir, seed_nodes_earlier,"TV")
 #	print("before ",initial_spread, seed_nodes_earlier, new_node_to_be_added)
 
-	final_spread  = calculate_spread_mc_sim(graphEnv.graphEnvironment[graphid].graph_dir, seed_nodes_later,"TV")
+	final_spread  = calculate_spread_mc_sim(graphEnv.graphEnvironment[graphid].graph_dir, seed_nodes_later,"TV",attributes, attr_value_id, group_size,l)
 
 	#initial_spread = calculate_spread(graphEnv.graphE nvironment[graphid].graphX, seed_nodes_earlier,
 	#								  new_node_to_be_added)
