@@ -180,7 +180,7 @@ for episode in range(0,numEps):
                 num_mc_simulation =8
 
 
-                spread=evaluate_spread.evaluate_helper_without_mp(graph_path, None, int_selected_nodes, num_mc_simulation)
+                spread=evaluate_spread.evaluate_helper_without_mp_fair(graph_path, None, int_selected_nodes, num_mc_simulation, graph.attributes,graph.attr_value_id, graph.group_size,0.1)
                 # print(" iter {}  spread {}".format(i, temp_spread))
                 # spread = spread + temp_spread
                 # spread = spread * 1.0 / num_mc_simulation
