@@ -86,7 +86,7 @@ def evaluate_helper_mp(graph_dir, main_graph, selected_nodes, num_mc_sim):
     return avg_spread
 
 
-def evaluate_helper_without_mp(graph_dir, main_graph, selected_nodes, num_mc_sim,attributes, attr_value_id, group_size,l):
+def evaluate_helper_without_mp_fair(graph_dir, main_graph, selected_nodes, num_mc_sim,attributes, attr_value_id, group_size,l):
 
     mc_sim_graphs_dir = graph_dir+'/mc_sim_graphs/'
     print(" mc_sim_graphs dir ", mc_sim_graphs_dir  )
